@@ -15,12 +15,34 @@ type DataType struct {
 	Value   string   `xml:"value,emitempty"`
 }
 
-func (dataHolder ExtData) GetExtData(kind string) string {
+type FieldError struct {
+	Msg string
+}
+
+func (e *FieldError) Error() string {
+	return e.Msg
+}
+
+func (dataHolder *ExtData) Field(kind string) (string, error) {
 	// find 'kind' in 'dataHolder''s Data[]
 	for _, d := range dataHolder.Data {
 		if d.Name == kind {
-			return d.Value
+			return d.Value, nil
 		}
 	}
-	return ""
+	return "", dataHolder.fieldError("No Mapping field.")
+}
+
+func (d *ExtData) fieldError(msg string) error {
+	return &FieldError{Msg: msg}
+}
+
+func (dataHolder *ExtData) SetField(kind string, val string) error {
+	for _, d := range dataHolder.Data {
+		if d.Name == kind {
+			d.Value = val
+			return nil
+		}
+	}
+	return dataHolder.fieldError("No Mapping field.")
 }

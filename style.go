@@ -3,8 +3,8 @@ package kml
 import "encoding/xml"
 
 type Style struct {
-	XMLName   xml.Name `xml:"Style"`
-	IconStyle `xml:"IconStyle,innerxml,emitempty"`
+	XMLName   xml.Name  `xml:"Style"`
+	IconStyle IconStyle `xml:"IconStyle,emitempty"`
 	//LineStyle
 	//PolyStyle
 	//BalloonStyle
@@ -20,23 +20,21 @@ type IconStyle struct {
 }
 
 //KML color format as "ABGR", ie. "aabbggrr"
-type KMLColorString string
 
-func (p KMLColorString) ToRgba() string {
-	s := string(p)
-	a := s[0:2]
-	b := s[2:4]
-	g := s[4:6]
-	r := s[6:8]
+func ToRgba(KMLcolor string) string {
+	a := KMLcolor[0:2]
+	b := KMLcolor[2:4]
+	g := KMLcolor[4:6]
+	r := KMLcolor[6:8]
 	rgba := r + g + b + a
 	return rgba
 }
 
-func SetRgba(rgba string) KMLColorString {
+func ToKmlColor(rgba string) string {
 	r := rgba[0:2]
 	g := rgba[2:4]
 	b := rgba[4:6]
 	a := rgba[6:8]
-	s := a + b + g + r
-	return KMLColorString(s)
+	KMLcolor := a + b + g + r
+	return KMLcolor
 }

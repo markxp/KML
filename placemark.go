@@ -7,7 +7,7 @@ import (
 type Placemark struct {
 	XMLName xml.Name `xml:"Placemark"`
 	Name    string   `xml:"name,emitempty"`
-	Style   `xml:"Style,innerxml"`
-	ExtData `xml:"ExtendedData,innerxml"`
-	Point   `xml:"Point,innerxml"`
+	Style   Style    `xml:"Style"`
+	ExtData ExtData  `xml:"ExtendedData,emitempty"`
+	Point   Point    `xml:"Point"`
 }

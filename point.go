@@ -11,6 +11,8 @@ type Point struct {
 	XMLName   xml.Name `xml:"Point"`
 	CoordData string   `xml:"coordinates"`
 	Mode      string   `xml:"altitudeMode,emitempty"`
+	// if <altitudeMode></altitudeMode> is empty, Marshal() still
+	// leaves empty tag on Point
 }
 
 const (
@@ -41,8 +43,8 @@ func (p Point) Coordinates() (ret [3]float64, err error) {
 	return
 }
 
-func (p *Point) setCoordinates(c [3]float64) {
-	var strArr []string
+func (p *Point) SetCoordinates(c [3]float64) {
+	strArr := make([]string, 3)
 	for i := 0; i != 3; i++ {
 		strArr[i] = strconv.FormatFloat(c[i], 'f', -1, 64)
 	}
