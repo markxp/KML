@@ -38,9 +38,9 @@ func (d *ExtData) fieldError(msg string) error {
 }
 
 func (dataHolder *ExtData) SetField(kind string, val string) error {
-	for _, d := range dataHolder.Data {
+	for k, d := range dataHolder.Data {
 		if d.Name == kind {
-			d.Value = val
+			dataHolder.Data[k].Value = val
 			return nil
 		}
 	}

@@ -86,8 +86,8 @@ func Test_XmlMarshal_ExtData_1(t *testing.T) {
 		XMLName: xml.Name{Local: "ExtendedData"},
 	}
 
-	v.Data = append(v.Data, DataType{Name: "SNR", Value: "-1"})
-	v.Data = append(v.Data, DataType{Name: "SNB", Value: "+0.21"})
+	v.Data = append(v.Data, DataType{Name: "BBA", Value: "-1"})
+	v.Data = append(v.Data, DataType{Name: "AAB", Value: "hello"})
 
 	marshal, err := xml.Marshal(&v)
 	if err != nil {
@@ -95,6 +95,48 @@ func Test_XmlMarshal_ExtData_1(t *testing.T) {
 	}
 
 	t.Logf("%s", string(marshal))
+}
+
+func Test_SetField(t *testing.T) {
+	v := ExtData{
+		XMLName: xml.Name{Local: "ExtendedData"},
+	}
+
+	v.Data = append(v.Data, DataType{Name: "BBA", Value: "-1"})
+	v.Data = append(v.Data, DataType{Name: "AAB", Value: "hello"})
+
+	v.SetField("AAB", "world")
+	found := false
+	for _, d := range v.Data {
+		if d.Name == "AAB" &&
+			d.Value == "world" {
+			found = true
+			t.Log("func SetField(kind string) string PASS")
+			break
+		}
+	}
+	//v.Data is empty
+	if len(v.Data) == 0 {
+		t.Error("ExtData error")
+	}
+	if !found {
+		t.Error("Invalid field or SetField() failed")
+	}
+
+}
+
+func Test_Field(t *testing.T) {
+	v := ExtData{
+		XMLName: xml.Name{Local: "ExtendedData"},
+	}
+
+	v.Data = append(v.Data, DataType{Name: "BBA", Value: "-1"})
+	v.Data = append(v.Data, DataType{Name: "AAB", Value: "hello"})
+	a1, _ := v.Field("AAB")
+	a2, _ := v.Field("BBA")
+	if a1 == "hello" && a2 == "-1" {
+		t.Log("func Field(kind string) string  PASS")
+	}
 }
 
 /*

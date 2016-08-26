@@ -10,6 +10,7 @@ import (
 
 func Test_XmlUnmarshal_Point_1(t *testing.T) {
 	raw := `
+	<?xml version="1.0" encoding="UTF-8"?>
   <Point>
     <coordinates>1.0,-1.0,+0.35</coordinates>
     <altitudeMode>relativeToGround</altitudeMode>
@@ -108,6 +109,25 @@ func Test_SetCoordinates(t *testing.T) {
 	// Check (p.x, p.y, p.z)
 	if p.CoordData != "10,-20,0.00001" {
 		t.Errorf("%#v", p)
+	}
+
+}
+
+func Test_Point_Distance(t *testing.T) {
+	p1Raw := `		<Point>
+			<coordinates>121.04564687,24.77332218,0</coordinates>
+		</Point>`
+	p2Raw := `		<Point>
+			<coordinates>121.04581743,24.77330606,0</coordinates>
+		</Point>
+	`
+	var p1, p2 Point
+	e1 := xml.Unmarshal([]byte(p1Raw), &p1)
+	e2 := xml.Unmarshal([]byte(p2Raw), &p2)
+	if e1 != nil || e2 != nil {
+		t.Error("Distance() failed. unmashal error")
+	} else {
+		t.Log(p1.Distance(p2))
 	}
 
 }

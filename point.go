@@ -3,6 +3,7 @@ package kml
 import (
 	"encoding/xml"
 	"errors"
+	"math"
 	"strconv"
 	"strings"
 )
@@ -49,4 +50,25 @@ func (p *Point) SetCoordinates(c [3]float64) {
 		strArr[i] = strconv.FormatFloat(c[i], 'f', -1, 64)
 	}
 	p.CoordData = strings.Join(strArr, ",")
+}
+
+func (src *Point) Distance(dst Point) (ret float64) {
+	srcArr, _ := src.Coordinates()
+	dstArr, _ := dst.Coordinates()
+
+	return Distance(srcArr[0], srcArr[1], dstArr[0], dstArr[1])
+}
+
+func Distance(srcX, srcY, dstX, dstY float64) (ret float64) {
+	earthRadius := 6357000.0
+	srcLambda := srcX / 180 * math.Pi
+	srcPhi := srcY / 180 * math.Pi
+	dstLambda := dstX / 180 * math.Pi
+	dstPhi := dstY / 180 * math.Pi
+	theta := math.Acos(
+		math.Sin(srcPhi)*math.Sin(dstPhi) +
+			math.Cos(srcPhi)*math.Cos(dstPhi)*math.Cos(dstLambda-srcLambda),
+	)
+	ret = earthRadius * theta
+	return ret
 }

@@ -42,7 +42,7 @@ func Test_XmlUnmarshal_Placemark_1(t *testing.T) {
 			LabelStyleScale: 0.0},
 		Point: Point{XMLName: xml.Name{Space: "", Local: "Point"},
 			CoordData: "1.0,-1.0,+0.35",
-			Mode:      ""}}
+			Mode:      "relativeToGround"}}
 	/*
 		if v != expect {
 			t.Errorf("Unmarshal Placemark , raw data: %s\n, Expect %#v\n, Result %#v", raw, expect, v)

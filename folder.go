@@ -6,6 +6,6 @@ import (
 
 type Folder struct {
 	XMLName    xml.Name    `xml:"Folder"`
-	Name       string      `xml:"name"`
+	Name       string      `xml:"name,emitempty"`
 	Placemarks []Placemark `xml:"Placemark"`
 }
