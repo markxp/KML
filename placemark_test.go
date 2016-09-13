@@ -30,8 +30,7 @@ func Test_XmlUnmarshal_Placemark_1(t *testing.T) {
 	var v Placemark
 	xml.Unmarshal([]byte(raw), &v)
 	expect := Placemark{
-		XMLName: xml.Name{Space: "", Local: "Placemark"},
-		Name:    "Taipei 101",
+		Name: "Taipei 101",
 		Style: Style{
 			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{
@@ -83,8 +82,7 @@ func Test_XmlUnmarshal_Placemark_2(t *testing.T) {
 	var v Placemark
 	xml.Unmarshal([]byte(raw), &v)
 	expect := Placemark{
-		XMLName: xml.Name{Space: "", Local: "Placemark"},
-		Name:    "Taipei 101",
+		Name: "Taipei 101",
 		Style: Style{
 			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{
@@ -139,8 +137,7 @@ func Test_XmlMarshal_Placemark_1(t *testing.T) {
 	var v Placemark
 	xml.Unmarshal([]byte(raw), &v)
 	expect := Placemark{
-		XMLName: xml.Name{Space: "", Local: "Placemark"},
-		Name:    "Taipei 101",
+		Name: "Taipei 101",
 		Style: Style{
 			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{

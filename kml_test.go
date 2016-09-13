@@ -64,12 +64,10 @@ func Test_XmlMarshal_Kml_1(t *testing.T) {
 		XmlnsAtom: "http://www.w3.org/2005/Atom",
 	}
 	f := &Folder{
-		XMLName: xml.Name{Local: "Folder"},
-		Name:    "New expt",
+		Name: "New expt",
 	}
 	p := Placemark{
-		XMLName: xml.Name{Space: "", Local: "Placemark"},
-		Name:    "Taipei 101",
+		Name: "Taipei 101",
 		Style: Style{
 			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{
