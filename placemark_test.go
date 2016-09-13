@@ -32,14 +32,12 @@ func Test_XmlUnmarshal_Placemark_1(t *testing.T) {
 	expect := Placemark{
 		Name: "Taipei 101",
 		Style: Style{
-			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{
-				XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 				Scale:    0.1,
 				KMLColor: "12452450",
 				IconHref: "http://i-am.url.com"},
 			LabelStyleScale: 0.0},
-		Point: Point{XMLName: xml.Name{Space: "", Local: "Point"},
+		Point: Point{
 			CoordData: "1.0,-1.0,+0.35",
 			Mode:      "relativeToGround"}}
 	/*
@@ -84,14 +82,12 @@ func Test_XmlUnmarshal_Placemark_2(t *testing.T) {
 	expect := Placemark{
 		Name: "Taipei 101",
 		Style: Style{
-			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{
-				XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 				Scale:    0.1,
 				KMLColor: "12452450",
 				IconHref: "http://i-am.url.com"},
 			LabelStyleScale: 0.0},
-		Point: Point{XMLName: xml.Name{Space: "", Local: "Point"},
+		Point: Point{
 			CoordData: "1.0,-1.0,+0.35",
 			Mode:      "relativeToGround"}}
 
@@ -139,16 +135,15 @@ func Test_XmlMarshal_Placemark_1(t *testing.T) {
 	expect := Placemark{
 		Name: "Taipei 101",
 		Style: Style{
-			XMLName: xml.Name{Space: "", Local: "Style"},
 			IconStyle: IconStyle{
-				XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 				Scale:    0.1,
 				KMLColor: "12452450",
 				IconHref: "http://i-am.url.com"},
 			LabelStyleScale: 0.0},
-		Point: Point{XMLName: xml.Name{Space: "", Local: "Point"},
+		Point: Point{
 			CoordData: "1.0,-1.0,+0.35",
-			Mode:      "relativeToGround"}}
+			Mode:      "relativeToGround"},
+	}
 
 	// Add ExtData XMLName (optional)
 	expect.ExtData.XMLName.Local = "ExtendedData"

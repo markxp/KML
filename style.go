@@ -1,10 +1,7 @@
 package kml
 
-import "encoding/xml"
-
 type Style struct {
-	XMLName   xml.Name  `xml:"Style"`
-	IconStyle IconStyle `xml:"IconStyle,emitempty"`
+	IconStyle IconStyle `xml:",emitempty"`
 	//LineStyle
 	//PolyStyle
 	//BalloonStyle
@@ -13,10 +10,9 @@ type Style struct {
 }
 
 type IconStyle struct {
-	XMLName  xml.Name `xml:"IconStyle"`
-	KMLColor string   `xml:"color"`
-	Scale    float64  `xml:"scale"`
-	IconHref string   `xml:"Icon>href"`
+	KMLColor string  `xml:"color"`
+	Scale    float64 `xml:"scale"`
+	IconHref string  `xml:"Icon>href"`
 }
 
 //KML color format as "ABGR", ie. "aabbggrr"

@@ -1,7 +1,6 @@
 package kml
 
 import (
-	"encoding/xml"
 	"errors"
 	"math"
 	"strconv"
@@ -9,9 +8,8 @@ import (
 )
 
 type Point struct {
-	XMLName   xml.Name `xml:"Point"`
-	CoordData string   `xml:"coordinates"`
-	Mode      string   `xml:"altitudeMode,emitempty"`
+	CoordData string `xml:"coordinates"`
+	Mode      string `xml:"altitudeMode,emitempty"`
 	// if <altitudeMode></altitudeMode> is empty, Marshal() still
 	// leaves empty tag on Point
 }

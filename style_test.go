@@ -19,7 +19,6 @@ func Test_XmlUnmarshal_IconStyle_1(t *testing.T) {
   </IconStyle>
   `
 	s := IconStyle{
-		XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 		Scale:    0.1,
 		KMLColor: "12452450",
 		IconHref: "http://i-am.url.com"}
@@ -35,7 +34,6 @@ func Test_XmlUnmarshal_IconStyle_1(t *testing.T) {
 
 func Test_XmlMarshal_IconStyle_1(t *testing.T) {
 	s := IconStyle{
-		XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 		Scale:    0.1,
 		KMLColor: "12452450",
 		IconHref: "http://i-am.url.com"}
@@ -64,9 +62,7 @@ func Test_XmlUnmarshal_Style_1(t *testing.T) {
   </Style>
   `
 	s := Style{
-		XMLName: xml.Name{Space: "", Local: "Style"},
 		IconStyle: IconStyle{
-			XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 			Scale:    0.1,
 			KMLColor: "12452450",
 			IconHref: "http://i-am.url.com"},
@@ -82,9 +78,7 @@ func Test_XmlUnmarshal_Style_1(t *testing.T) {
 
 func Test_XmlMarshal_Style_1(t *testing.T) {
 	s := Style{
-		XMLName: xml.Name{Space: "", Local: "Style"},
 		IconStyle: IconStyle{
-			XMLName:  xml.Name{Space: "", Local: "IconStyle"},
 			Scale:    0.1,
 			KMLColor: "12452450",
 			IconHref: "http://i-am.url.com"},
@@ -99,7 +93,6 @@ func Test_XmlMarshal_Style_1(t *testing.T) {
 
 func Test_Style_Color_ToRgba(t *testing.T) {
 	i := IconStyle{
-		XMLName:  xml.Name{Local: "IconStyle"},
 		KMLColor: "1234aced",
 		Scale:    0.1,
 		IconHref: "http://any.url.com",

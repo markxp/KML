@@ -14,5 +14,5 @@ type KML struct {
 	XmlnsKml  string `xml:"xmlns kml,attr"`
 	XmlnsAtom string `xml:"xmlns atom,attr"`
 
-	Folder Folder `xml:"Folder,emitempty"`
+	Folder Folder `xml:",emitempty"`
 }

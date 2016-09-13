@@ -16,7 +16,7 @@ func Test_XmlUnmarshal_Point_1(t *testing.T) {
     <altitudeMode>relativeToGround</altitudeMode>
   </Point>
 `
-	p := Point{XMLName: xml.Name{Space: "", Local: "Point"},
+	p := Point{
 		CoordData: "1.0,-1.0,+0.35",
 		Mode:      "relativeToGround"}
 
@@ -36,9 +36,10 @@ func Test_XmlUnmarshal_Point_2(t *testing.T) {
     <coordinates>1.0,-1.0,+0.35</coordinates>
   </Point>
 `
-	p := Point{XMLName: xml.Name{Space: "", Local: "Point"},
+	p := Point{
 		CoordData: "1.0,-1.0,+0.35",
-		Mode:      ""}
+		Mode:      "",
+	}
 
 	var unmashal Point
 	xml.Unmarshal([]byte(raw), &unmashal)
@@ -54,7 +55,7 @@ func Test_XmlUnmarshal_Point_2(t *testing.T) {
 // Marshal() shows the tag.
 //
 func Test_XmlMarshal_Point_1(t *testing.T) {
-	p := Point{XMLName: xml.Name{Space: "", Local: "Point"},
+	p := Point{
 		CoordData: "1.0,-1.0,+0.35"}
 
 	ans := `<Point><coordinates>1.0,-1.0,+0.35</coordinates><altitudeMode></altitudeMode></Point>`
@@ -79,7 +80,7 @@ func Test_Coordinates(t *testing.T) {
 	//  <coordinates>1.0,-1.0,+0.35</coordinates>
 	//</Point>
 	//
-	p := Point{XMLName: xml.Name{Space: "", Local: "Point"},
+	p := Point{
 		CoordData: "1.0,-1.0,+0.35",
 		Mode:      ""}
 	v, err := p.Coordinates()
@@ -101,7 +102,7 @@ func Test_Coordinates(t *testing.T) {
 
 func Test_SetCoordinates(t *testing.T) {
 	coord := [3]float64{10, -20, 0.00001}
-	p := Point{XMLName: xml.Name{Space: "", Local: "Point"},
+	p := Point{
 		CoordData: "1.0,-1.0,+0.35",
 		Mode:      ""}
 
