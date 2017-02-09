@@ -1,4 +1,4 @@
-package kml
+package KML
 
 import (
 	"encoding/xml"

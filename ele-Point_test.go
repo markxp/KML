@@ -1,11 +1,8 @@
-package kml
+package KML
 
 import (
-	//	"encoding/xml"
-
 	"encoding/xml"
 	"testing"
-	//	. "github.com/markxp/parser/kml"
 )
 
 func Test_XmlUnmarshal_Point_1(t *testing.T) {
